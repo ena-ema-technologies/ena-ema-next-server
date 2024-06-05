@@ -1,0 +1,34 @@
+export interface TService {
+  title: string;
+  price: number;
+  feature1: string;
+  feature2: string;
+  feature3: string;
+  feature4: string;
+  feature5: string;
+  description: string;
+  photo: string;
+  turnAroundTime: string;
+  frontendTech1?: string;
+  frontendTech2?: string;
+  frontendTech3?: string;
+  frontendTech4?: string;
+  frontendTech5?: string;
+  frontendTech6?: string;
+  backEndTech1?: string;
+  backEndTech2?: string;
+  backEndTech3?: string;
+  backEndTech4?: string;
+  backEndTech5?: string;
+  backEndTech6?: string;
+  database1?: string;
+  database2?: string;
+  database3?: string;
+  database4?: string;
+  database5?: string;
+  database6?: string;
+  relevantWorkSample1: string;
+  relevantWorkSample2: string;
+  relevantWorkSample3: string;
+  availability: string;
+}
