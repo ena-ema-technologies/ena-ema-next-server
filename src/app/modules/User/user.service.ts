@@ -13,7 +13,7 @@ import { TUser } from './user.interface';
 import { User } from './user.model';
 import { generateAdminId } from './user.utils';
 
-const createStudentIntoDB = async (
+const createCustomerIntoDB = async (
   file: any,
   password: string,
   payload: TCustomer,
@@ -109,7 +109,7 @@ const changeStatus = async (id: string, payload: { status: string }) => {
 };
 
 export const UserServices = {
-  createStudentIntoDB,
+  createCustomerIntoDB,
   createAdminIntoDB,
   getMe,
   changeStatus,

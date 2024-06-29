@@ -66,18 +66,18 @@ const deleteCustomerFromDB = async (id: string) => {
   try {
     session.startTransaction();
 
-    const deletedStudent = await Customer.findByIdAndUpdate(
+    const deletedCustomer = await Customer.findByIdAndUpdate(
       id,
       { isDeleted: true },
       { new: true, session },
     );
 
-    if (!deletedStudent) {
-      throw new AppError(httpStatus.BAD_REQUEST, 'Failed to delete student');
+    if (!deletedCustomer) {
+      throw new AppError(httpStatus.BAD_REQUEST, 'Failed to delete Customer');
     }
 
-    // get user _id from deletedStudent
-    const userId = deletedStudent.user;
+    // get user _id from deletedCustomer
+    const userId = deletedCustomer;
 
     const deletedUser = await User.findByIdAndUpdate(
       userId,
@@ -92,7 +92,7 @@ const deleteCustomerFromDB = async (id: string) => {
     await session.commitTransaction();
     await session.endSession();
 
-    return deletedStudent;
+    return deletedCustomer;
   } catch (err) {
     await session.abortTransaction();
     await session.endSession();

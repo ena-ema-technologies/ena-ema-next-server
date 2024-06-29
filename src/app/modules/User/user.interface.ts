@@ -21,6 +21,7 @@ export interface TUser {
   isDeleted: boolean;
   createdAt: Date;
   updatedAt: Date;
+  passwordChangedAt: Date;
 }
 
 export interface UserModel extends Model<TUser> {
