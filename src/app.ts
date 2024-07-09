@@ -13,8 +13,8 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: ['https://www.enaema.com'],
-    // origin: ['https://ena-ema-next-client.vercel.app'],
+    // origin: ['https://www.enaema.com'],
+    origin: ['http://localhost:3000'],
     credentials: true,
   }),
 );

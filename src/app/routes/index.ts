@@ -9,6 +9,7 @@ import { ServiceRoutes } from '../modules/Service/service.route';
 import { TeamRoutes } from '../modules/Team/team.route';
 import { HiringPostRoutes } from '../modules/HiringPost/hiringPost.route';
 import { JobApplicationRoutes } from '../modules/JobApplications/jobApplication.routes';
+import { PreviousWorkRoutes } from '../modules/PreviousWorks/previousWork.route';
 
 const router = Router();
 
@@ -52,6 +53,10 @@ const moduleRoutes = [
   {
     path: '/our-team',
     route: TeamRoutes,
+  },
+  {
+    path: '/previous-work',
+    route: PreviousWorkRoutes,
   },
 ];
 
