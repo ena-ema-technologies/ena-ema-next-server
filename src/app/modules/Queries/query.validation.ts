@@ -2,10 +2,7 @@ import { z } from 'zod';
 
 export const TQuerySchema = z.object({
   fullName: z.string().nonempty('Name number is required'),
-  email: z
-    .string()
-    .email('Invalid email address')
-    .nonempty('Email is required'),
+  email: z.string().email('Invalid email address').nonempty('Email is required'),
   phone: z.string().nonempty('Phone number is required'),
   ContactMethod: z.string().nonempty('Contact method is required'),
   budget: z.number().positive('please enter positive number only'),

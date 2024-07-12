@@ -37,10 +37,7 @@ const getSingleCustomerFromDB = async (id: string) => {
   return result;
 };
 
-const updateCustomerIntoDB = async (
-  id: string,
-  payload: Partial<TCustomer>,
-) => {
+const updateCustomerIntoDB = async (id: string, payload: Partial<TCustomer>) => {
   const { name, ...remainingCustomerData } = payload;
 
   const modifiedUpdatedData: Record<string, unknown> = {
@@ -66,11 +63,7 @@ const deleteCustomerFromDB = async (id: string) => {
   try {
     session.startTransaction();
 
-    const deletedCustomer = await Customer.findByIdAndUpdate(
-      id,
-      { isDeleted: true },
-      { new: true, session },
-    );
+    const deletedCustomer = await Customer.findByIdAndUpdate(id, { isDeleted: true }, { new: true, session });
 
     if (!deletedCustomer) {
       throw new AppError(httpStatus.BAD_REQUEST, 'Failed to delete Customer');
@@ -79,11 +72,7 @@ const deleteCustomerFromDB = async (id: string) => {
     // get user _id from deletedCustomer
     const userId = deletedCustomer;
 
-    const deletedUser = await User.findByIdAndUpdate(
-      userId,
-      { isDeleted: true },
-      { new: true, session },
-    );
+    const deletedUser = await User.findByIdAndUpdate(userId, { isDeleted: true }, { new: true, session });
 
     if (!deletedUser) {
       throw new AppError(httpStatus.BAD_REQUEST, 'Failed to delete user');

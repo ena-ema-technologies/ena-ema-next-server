@@ -22,11 +22,7 @@ const getSingleQueryFromDB = async (id: string) => {
 };
 
 const updateQueryFromDB = async (id: string) => {
-  const result = await Query.findByIdAndUpdate(
-    id,
-    { mark: true },
-    { new: true },
-  );
+  const result = await Query.findByIdAndUpdate(id, { mark: true }, { new: true });
   return result;
 };
 

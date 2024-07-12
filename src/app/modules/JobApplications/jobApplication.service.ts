@@ -22,11 +22,7 @@ const getSingleJobApplicationFromDB = async (id: string) => {
 };
 
 const updateJobApplicationFromDB = async (id: string) => {
-  const result = await JobApplication.findByIdAndUpdate(
-    id,
-    { mark: true },
-    { new: true },
-  );
+  const result = await JobApplication.findByIdAndUpdate(id, { mark: true }, { new: true });
   return result;
 };
 

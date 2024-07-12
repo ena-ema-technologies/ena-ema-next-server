@@ -17,11 +17,7 @@ const getSingleHiringPostFromDB = async (id: string) => {
 };
 
 const updateHiringPostFromDB = async (id: string) => {
-  const result = await Hiring.findByIdAndUpdate(
-    id,
-    { mark: true },
-    { new: true },
-  );
+  const result = await Hiring.findByIdAndUpdate(id, { mark: true }, { new: true });
   return result;
 };
 

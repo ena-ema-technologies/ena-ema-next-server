@@ -5,8 +5,7 @@ import { PreviousWorkServices } from './previousWork.service';
 
 const createPreviousWork = catchAsync(async (req, res) => {
   const newPreviousWork = req.body;
-  const result =
-    await PreviousWorkServices.createPreviousWorkIntoDB(newPreviousWork);
+  const result = await PreviousWorkServices.createPreviousWorkIntoDB(newPreviousWork);
   //   send response
   sendResponse(res, {
     success: true,

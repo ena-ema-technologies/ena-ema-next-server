@@ -28,7 +28,4 @@ const jobApplicationSchema = new Schema<TJobApplication>(
   },
 );
 
-export const JobApplication = model<TJobApplication>(
-  'JobApplication',
-  jobApplicationSchema,
-);
+export const JobApplication = model<TJobApplication>('JobApplication', jobApplicationSchema);

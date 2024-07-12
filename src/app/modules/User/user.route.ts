@@ -3,7 +3,6 @@ import express, { NextFunction, Request, Response } from 'express';
 import auth from '../../middlewares/auth';
 import validateRequest from '../../middlewares/validateRequest';
 import { upload } from '../../utils/sendImageToCloudinary';
-import { createAdminValidationSchema } from '../Admin/admin.validation';
 import { createCustomerValidationSchema } from '../Customer/customer.validation';
 import { USER_ROLE } from './user.constant';
 import { UserControllers } from './user.controller';
@@ -32,7 +31,6 @@ router.post(
     req.body = JSON.parse(req.body.data);
     next();
   },
-  validateRequest(createAdminValidationSchema),
   UserControllers.createAdmin,
 );
 
@@ -43,10 +41,6 @@ router.post(
   UserControllers.changeStatus,
 );
 
-router.get(
-  '/me',
-  auth(USER_ROLE.superAdmin, USER_ROLE.admin, USER_ROLE.customer),
-  UserControllers.getMe,
-);
+router.get('/me', auth(USER_ROLE.superAdmin, USER_ROLE.admin, USER_ROLE.customer), UserControllers.getMe);
 
 export const UserRoutes = router;

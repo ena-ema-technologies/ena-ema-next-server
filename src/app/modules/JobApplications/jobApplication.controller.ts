@@ -6,8 +6,7 @@ import { Request, Response } from 'express';
 
 const submitJobApplication = catchAsync(async (req: Request, res: Response) => {
   const newApplication = req.body;
-  const result =
-    await JobApplicationServices.submitJobApplicationIntoDB(newApplication);
+  const result = await JobApplicationServices.submitJobApplicationIntoDB(newApplication);
   //   send response
   sendResponse(res, {
     success: true,
@@ -28,33 +27,28 @@ const getAllJobApplication = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const getMarkedJobApplication = catchAsync(
-  async (req: Request, res: Response) => {
-    const result = await JobApplicationServices.getMarkedJobApplicationFromDB();
-    //   send response
-    sendResponse(res, {
-      success: true,
-      statusCode: httpStatus.OK,
-      message: 'Marked Job Application retrieved successfully',
-      data: result,
-    });
-  },
-);
+const getMarkedJobApplication = catchAsync(async (req: Request, res: Response) => {
+  const result = await JobApplicationServices.getMarkedJobApplicationFromDB();
+  //   send response
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Marked Job Application retrieved successfully',
+    data: result,
+  });
+});
 
-const getSingleJobApplication = catchAsync(
-  async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const result =
-      await JobApplicationServices.getSingleJobApplicationFromDB(id);
-    //   send response
-    sendResponse(res, {
-      success: true,
-      statusCode: httpStatus.OK,
-      message: 'Job Application you are looking for!',
-      data: result,
-    });
-  },
-);
+const getSingleJobApplication = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await JobApplicationServices.getSingleJobApplicationFromDB(id);
+  //   send response
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Job Application you are looking for!',
+    data: result,
+  });
+});
 
 const updateJobApplication = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;

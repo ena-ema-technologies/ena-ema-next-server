@@ -35,30 +35,23 @@ cloudinary.config({
 //   });
 // };
 
-export const sendImageToCloudinary = (
-  imageName: string,
-  path: string,
-): Promise<Record<string, unknown>> => {
+export const sendImageToCloudinary = (imageName: string, path: string): Promise<Record<string, unknown>> => {
   return new Promise((resolve, reject) => {
-    cloudinary.uploader.upload(
-      path,
-      { public_id: imageName.trim() },
-      function (error, result) {
-        if (error) {
-          reject(error);
-        } else {
-          fs.unlink(path, (err) => {
-            if (err) {
-              // console.log(err);
-            } else {
-              // console.log('File is deleted.');
-            }
-          });
+    cloudinary.uploader.upload(path, { public_id: imageName.trim() }, function (error, result) {
+      if (error) {
+        reject(error);
+      } else {
+        fs.unlink(path, (err) => {
+          if (err) {
+            // console.log(err);
+          } else {
+            // console.log('File is deleted.');
+          }
+        });
 
-          resolve(result as UploadApiResponse);
-        }
-      },
-    );
+        resolve(result as UploadApiResponse);
+      }
+    });
   });
 };
 

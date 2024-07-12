@@ -24,9 +24,7 @@ export const updateCustomerValidationSchema = z.object({
       email: z.string().email().optional(),
       contactNo: z.string().optional(),
       emergencyContactNo: z.string().optional(),
-      bloogGroup: z
-        .enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'])
-        .optional(),
+      bloogGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']).optional(),
       presentAddress: z.string().optional(),
       admissionSemester: z.string().optional(),
       academicDepartment: z.string().optional(),

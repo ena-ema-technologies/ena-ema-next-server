@@ -13,11 +13,7 @@ import { TUser } from './user.interface';
 import { User } from './user.model';
 import { generateAdminId } from './user.utils';
 
-const createCustomerIntoDB = async (
-  file: any,
-  password: string,
-  payload: TCustomer,
-) => {
+const createCustomerIntoDB = async (file: any, password: string, payload: TCustomer) => {
   // create a user object
   const userData: Partial<TUser> = {};
 
@@ -30,11 +26,7 @@ const createCustomerIntoDB = async (
   userData.email = payload.email;
 };
 
-const createAdminIntoDB = async (
-  file: any,
-  password: string,
-  payload: TAdmin,
-) => {
+const createAdminIntoDB = async (file: any, password: string, payload: TAdmin) => {
   // create a user object
   const userData: Partial<TUser> = {};
 

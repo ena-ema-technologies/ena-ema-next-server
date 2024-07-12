@@ -7,17 +7,9 @@ import { updateCustomerValidationSchema } from './customer.validation';
 
 const router = express.Router();
 
-router.get(
-  '/',
-  auth(USER_ROLE.superAdmin, USER_ROLE.admin),
-  CustomerControllers.getAllCustomers,
-);
+router.get('/', auth(USER_ROLE.superAdmin, USER_ROLE.admin), CustomerControllers.getAllCustomers);
 
-router.get(
-  '/:id',
-  auth(USER_ROLE.superAdmin, USER_ROLE.admin),
-  CustomerControllers.getSingleCustomer,
-);
+router.get('/:id', auth(USER_ROLE.superAdmin, USER_ROLE.admin), CustomerControllers.getSingleCustomer);
 
 router.patch(
   '/:id',
@@ -26,10 +18,6 @@ router.patch(
   CustomerControllers.updateCustomer,
 );
 
-router.delete(
-  '/:id',
-  auth(USER_ROLE.superAdmin, USER_ROLE.admin),
-  CustomerControllers.deleteCustomer,
-);
+router.delete('/:id', auth(USER_ROLE.superAdmin, USER_ROLE.admin), CustomerControllers.deleteCustomer);
 
 export const CustomerRoutes = router;

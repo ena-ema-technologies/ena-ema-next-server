@@ -56,7 +56,4 @@ const PreviousWorkSchema = new Schema<TPreviousWork>(
   },
 );
 
-export const PreviousWork = model<TPreviousWork>(
-  'PreviousWork',
-  PreviousWorkSchema,
-);
+export const PreviousWork = model<TPreviousWork>('PreviousWork', PreviousWorkSchema);

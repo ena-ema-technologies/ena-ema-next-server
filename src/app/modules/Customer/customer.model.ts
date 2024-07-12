@@ -47,7 +47,4 @@ customerSchema.statics.isUserExists = async function (id: string) {
   return existingUser;
 };
 
-export const Customer = model<TCustomer, CustomerModel>(
-  'Customer',
-  customerSchema,
-);
+export const Customer = model<TCustomer, CustomerModel>('Customer', customerSchema);

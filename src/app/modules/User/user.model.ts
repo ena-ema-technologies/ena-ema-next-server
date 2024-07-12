@@ -12,10 +12,7 @@ const userSchema = new Schema<TUser, UserModel>(
       required: true,
       unique: true,
     },
-    name: {
-      type: String,
-      required: true,
-    },
+
     email: {
       type: String,
       required: true,
@@ -26,10 +23,6 @@ const userSchema = new Schema<TUser, UserModel>(
       required: true,
       select: 0,
     },
-    gender: {
-      type: String,
-      required: true,
-    },
     needsPasswordChange: {
       type: Boolean,
       default: true,
@@ -39,14 +32,6 @@ const userSchema = new Schema<TUser, UserModel>(
       enum: ['superAdmin', 'customer', 'faculty', 'admin'],
     },
 
-    emergencyContactNo: {
-      type: String,
-      required: true,
-    },
-    presentAddress: {
-      type: String,
-      required: true,
-    },
     status: {
       type: String,
       enum: UserStatus,
@@ -66,10 +51,7 @@ userSchema.pre('save', async function (next) {
   // eslint-disable-next-line @typescript-eslint/no-this-alias
   const user = this; // doc
   // hashing password and save into DB
-  user.password = await bcrypt.hash(
-    user.password,
-    Number(config.bcrypt_salt_rounds),
-  );
+  user.password = await bcrypt.hash(user.password, Number(config.bcrypt_salt_rounds));
   next();
 });
 
@@ -83,19 +65,12 @@ userSchema.statics.isUserExistsByCustomId = async function (id: string) {
   return await User.findOne({ id }).select('+password');
 };
 
-userSchema.statics.isPasswordMatched = async function (
-  plainTextPassword,
-  hashedPassword,
-) {
+userSchema.statics.isPasswordMatched = async function (plainTextPassword, hashedPassword) {
   return await bcrypt.compare(plainTextPassword, hashedPassword);
 };
 
-userSchema.statics.isJWTIssuedBeforePasswordChanged = function (
-  passwordChangedTimestamp: Date,
-  jwtIssuedTimestamp: number,
-) {
-  const passwordChangedTime =
-    new Date(passwordChangedTimestamp).getTime() / 1000;
+userSchema.statics.isJWTIssuedBeforePasswordChanged = function (passwordChangedTimestamp: Date, jwtIssuedTimestamp: number) {
+  const passwordChangedTime = new Date(passwordChangedTimestamp).getTime() / 1000;
   return passwordChangedTime > jwtIssuedTimestamp;
 };
 

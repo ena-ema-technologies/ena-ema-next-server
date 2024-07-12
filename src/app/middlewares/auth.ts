@@ -18,10 +18,7 @@ const auth = (...requiredRoles: TUserRole[]) => {
     let decoded;
     try {
       // checking if the given token is valid
-      decoded = jwt.verify(
-        token,
-        config.jwt_access_secret as string,
-      ) as JwtPayload;
+      decoded = jwt.verify(token, config.jwt_access_secret as string) as JwtPayload;
     } catch (err) {
       throw new AppError(httpStatus.UNAUTHORIZED, 'Unauthorized');
     }
@@ -49,21 +46,12 @@ const auth = (...requiredRoles: TUserRole[]) => {
       throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked ! !');
     }
 
-    if (
-      user.passwordChangedAt &&
-      User.isJWTIssuedBeforePasswordChanged(
-        user.passwordChangedAt,
-        iat as number,
-      )
-    ) {
+    if (user.passwordChangedAt && User.isJWTIssuedBeforePasswordChanged(user.passwordChangedAt, iat as number)) {
       throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized !');
     }
 
     if (requiredRoles && !requiredRoles.includes(role)) {
-      throw new AppError(
-        httpStatus.UNAUTHORIZED,
-        'You are not authorized  hi!',
-      );
+      throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized  hi!');
     }
 
     req.user = decoded as JwtPayload & { role: string };

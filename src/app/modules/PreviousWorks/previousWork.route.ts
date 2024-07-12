@@ -5,11 +5,7 @@ import { PreviousWorkController } from './previousWork.controller';
 
 const router = express.Router();
 
-router.post(
-  '/create-previous-work',
-  auth(USER_ROLE.superAdmin, USER_ROLE.admin),
-  PreviousWorkController.createPreviousWork,
-);
+router.post('/create-previous-work', auth(USER_ROLE.superAdmin, USER_ROLE.admin), PreviousWorkController.createPreviousWork);
 
 router.get(
   '/',
@@ -23,10 +19,6 @@ router.get(
   PreviousWorkController.getSinglePreviousWork,
 );
 
-router.delete(
-  '/:id',
-  auth(USER_ROLE.superAdmin, USER_ROLE.admin),
-  PreviousWorkController.deletePreviousWork,
-);
+router.delete('/:id', auth(USER_ROLE.superAdmin, USER_ROLE.admin), PreviousWorkController.deletePreviousWork);
 
 export const PreviousWorkRoutes = router;

@@ -17,16 +17,8 @@ router.get(
   ReviewController.getAllReview,
 );
 
-router.get(
-  '/:id',
-  auth(USER_ROLE.superAdmin, USER_ROLE.admin),
-  ReviewController.getSingleReview,
-);
+router.get('/:id', auth(USER_ROLE.superAdmin, USER_ROLE.admin), ReviewController.getSingleReview);
 
-router.delete(
-  '/:id',
-  auth(USER_ROLE.superAdmin, USER_ROLE.admin),
-  ReviewController.deleteReview,
-);
+router.delete('/:id', auth(USER_ROLE.superAdmin, USER_ROLE.admin), ReviewController.deleteReview);
 
 export const ReviewRoutes = router;

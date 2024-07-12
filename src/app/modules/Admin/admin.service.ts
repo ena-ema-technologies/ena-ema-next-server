@@ -9,12 +9,7 @@ import { TAdmin } from './admin.interface';
 import { Admin } from './admin.model';
 
 const getAllAdminsFromDB = async (query: Record<string, unknown>) => {
-  const adminQuery = new QueryBuilder(Admin.find(), query)
-    .search(AdminSearchableFields)
-    .filter()
-    .sort()
-    .paginate()
-    .fields();
+  const adminQuery = new QueryBuilder(Admin.find(), query).search(AdminSearchableFields).filter().sort().paginate().fields();
 
   const result = await adminQuery.modelQuery;
   const meta = await adminQuery.countTotal();
@@ -55,11 +50,7 @@ const deleteAdminFromDB = async (id: string) => {
   try {
     session.startTransaction();
 
-    const deletedAdmin = await Admin.findByIdAndUpdate(
-      id,
-      { isDeleted: true },
-      { new: true, session },
-    );
+    const deletedAdmin = await Admin.findByIdAndUpdate(id, { isDeleted: true }, { new: true, session });
 
     if (!deletedAdmin) {
       throw new AppError(httpStatus.BAD_REQUEST, 'Failed to delete student');
@@ -68,11 +59,7 @@ const deleteAdminFromDB = async (id: string) => {
     // get user _id from deletedAdmin
     const userId = deletedAdmin.user;
 
-    const deletedUser = await User.findOneAndUpdate(
-      userId,
-      { isDeleted: true },
-      { new: true, session },
-    );
+    const deletedUser = await User.findOneAndUpdate(userId, { isDeleted: true }, { new: true, session });
 
     if (!deletedUser) {
       throw new AppError(httpStatus.BAD_REQUEST, 'Failed to delete user');

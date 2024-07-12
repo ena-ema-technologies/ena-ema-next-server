@@ -6,11 +6,7 @@ import { UserServices } from './user.service';
 const createCustomer = catchAsync(async (req, res) => {
   const { password, student: studentData } = req.body;
 
-  const result = await UserServices.createCustomerIntoDB(
-    req.file,
-    password,
-    studentData,
-  );
+  const result = await UserServices.createCustomerIntoDB(req.file, password, studentData);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -23,11 +19,7 @@ const createCustomer = catchAsync(async (req, res) => {
 const createAdmin = catchAsync(async (req, res) => {
   const { password, admin: adminData } = req.body;
 
-  const result = await UserServices.createAdminIntoDB(
-    req.file,
-    password,
-    adminData,
-  );
+  const result = await UserServices.createAdminIntoDB(req.file, password, adminData);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

@@ -5,11 +5,7 @@ import { USER_ROLE } from '../User/user.constant';
 
 const router = express.Router();
 
-router.post(
-  '/create-service',
-  auth(USER_ROLE.superAdmin, USER_ROLE.admin),
-  ServiceController.createService,
-);
+router.post('/create-service', auth(USER_ROLE.superAdmin, USER_ROLE.admin), ServiceController.createService);
 
 router.get(
   '/',
@@ -23,10 +19,6 @@ router.get(
   ServiceController.getSingleService,
 );
 
-router.delete(
-  '/:id',
-  auth(USER_ROLE.superAdmin, USER_ROLE.admin),
-  ServiceController.deleteService,
-);
+router.delete('/:id', auth(USER_ROLE.superAdmin, USER_ROLE.admin), ServiceController.deleteService);
 
 export const ServiceRoutes = router;
